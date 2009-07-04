@@ -2,14 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package facade.collections;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import org.apache.commons.collections15.Predicate;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import static facade.Collections.*;
 
 /**
  *
@@ -17,9 +22,26 @@ import static org.junit.Assert.*;
  */
 public class CollectionSafeProxyTest {
 
+    private Collection<Integer> emptyLst;
+    private Collection<Integer> singleLst;
+ 
+    private Predicate<Integer> falsePred = new Predicate() {
+        public boolean evaluate(Object object) {
+            return false;
+        }
+    };
+
+    private Predicate<Integer> truePred = new Predicate() {
+        public boolean evaluate(Object object) {
+            return true;
+        }
+    };
 
     @Before
     public void setUp() {
+        emptyLst = new ArrayList<Integer>();
+        singleLst = new ArrayList<Integer>();
+        singleLst.add(12);
     }
 
     /**
@@ -27,6 +49,8 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testGet() {
+        Collection<Integer> lst = with( emptyLst ).get();
+        assertFalse( lst == emptyLst );
     }
 
     /**
@@ -34,6 +58,9 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testSelect() {
+        Collection<Integer> lst = with( singleLst ).select(truePred).get();
+        lst = with( singleLst ).select(falsePred).get();
+        assertEquals( 0, lst.size() );
     }
 
     /**
@@ -41,6 +68,7 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testReject() {
+        fail();
     }
 
     /**
@@ -48,6 +76,7 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testApply() {
+        fail();
     }
 
     /**
@@ -55,6 +84,7 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testAdd() {
+        fail();
     }
 
     /**
@@ -62,6 +92,7 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testAddAll() {
+        fail();
     }
 
     /**
@@ -69,6 +100,7 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testMap() {
+        fail();
     }
 
     /**
@@ -76,6 +108,7 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testReduce() {
+        fail();
     }
 
     /**
@@ -83,6 +116,6 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testFillWith() {
+        fail();
     }
-
 }
