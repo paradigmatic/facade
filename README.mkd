@@ -1,0 +1,14 @@
+Description
+===========
+
+_Facade_ is a library design to make the use of java standard API less verbose and boring. It combines the use of a "natural language" like syntax and functional programming techniques.
+
+Installation
+============
+
+Requirements
+------------
+
+ * Java plateform JDK (tested and developed with 1.6 but 1.5 should also work).
+ * [Collections15](http://collections15.sourceforge.net/index.html)
+
