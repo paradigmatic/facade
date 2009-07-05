@@ -73,6 +73,7 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
 
     public CollectionProxy<T> select(Predicate<T> pred) {
         for( T t : collection ) {
+            System.out.println("ELEM: " + t);
             if( ! pred.evaluate(t) ) {
                 collection.remove(t);
             }
@@ -99,9 +100,5 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
         return result;
     }
 
-    public CollectionProxy<T> fillWith(Generator<T> gen) {
-        gen.fill(collection);
-        return this;
-    }
 
 }

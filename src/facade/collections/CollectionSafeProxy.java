@@ -144,15 +144,4 @@ public class CollectionSafeProxy<T> implements CollectionProxy<T> {
         return result;
     }
 
-    public CollectionProxy<T> fillWith(Generator<T> gen) {
-        CollectionProxy<T> nextProxy = null;
-        try {
-            nextProxy = new CollectionInPlaceProxy<T>(cloneCollection()).fillWith(gen);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return nextProxy;
-    }
 }

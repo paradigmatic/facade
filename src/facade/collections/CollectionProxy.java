@@ -53,8 +53,6 @@ public interface CollectionProxy<T> {
 
     public CollectionProxy<T> select(Predicate<T> pred);
 
-    public CollectionProxy<T> fillWith( Generator<T> gen );
-
     public <R> R reduce( Reducer<T,R> reducer );
 
 

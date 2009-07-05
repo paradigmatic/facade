@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package facade.collections;
 
 import facade.functors.Reducer;
@@ -16,26 +17,29 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 import static facade.Collections.*;
+
 
 /**
  *
  * @author falcone
  */
-public class CollectionSafeProxyTest {
+public class CollectionInPlaceProxyTest {
+
+
 
     private Collection<Integer> emptyLst;
     private Collection<Integer> singleLst;
     private final int SINGLE_ELEM = 41;
 
     private Predicate<Integer> falsePred = new Predicate() {
+
         public boolean evaluate(Object object) {
             return false;
         }
     };
-
     private Predicate<Integer> truePred = new Predicate() {
+
         public boolean evaluate(Object object) {
             return true;
         }
@@ -53,8 +57,8 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testGet() {
-        Collection<Integer> lst = with( emptyLst ).get();
-        assertFalse( lst == emptyLst );
+        Collection<Integer> lst = on(emptyLst).get();
+        assertTrue(lst == emptyLst);
     }
 
     /**
@@ -62,10 +66,10 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testSelect() {
-        Collection<Integer> lst = with( singleLst ).select(truePred).get();
-        assertEquals( 1, lst.size() );
-        lst = with( singleLst ).select(falsePred).get();
-        assertEquals( 0, lst.size() );
+        with(singleLst).select(truePred).get();
+        assertEquals(1, singleLst.size());
+        with(singleLst).select(falsePred).get();
+        assertEquals(0, singleLst.size());
     }
 
     /**
@@ -73,12 +77,11 @@ public class CollectionSafeProxyTest {
      */
     @Test
     public void testReject() {
-        Collection<Integer> lst = with( singleLst ).select(falsePred).get();
-        assertEquals( 1, lst.size() );
-        lst = with( singleLst ).select(truePred).get();
-        assertEquals( 0, lst.size() );
+        with(singleLst).reject(falsePred).get();
+        assertEquals(1, singleLst.size());
+        with(singleLst).reject(truePred).get();
+        assertEquals(0, singleLst.size());
     }
-
 
     /**
      * Test of apply method, of class CollectionSafeProxy.
@@ -94,10 +97,18 @@ public class CollectionSafeProxyTest {
 
         }
         Watcher w = new Watcher();
-        with(singleLst).apply(w);
+        on(singleLst).apply(w);
         assertEquals( w.getLast(), SINGLE_ELEM);
     }
 
+    /**
+     * Test of add method, of class CollectionSafeProxy.
+     */
+    @Test
+    public void testAdd() {
+        on(singleLst).add(3);
+        assertEquals(2, singleLst.size());
+    }
 
     /**
      * Test of addAll method, of class CollectionSafeProxy.
@@ -107,8 +118,8 @@ public class CollectionSafeProxyTest {
         Collection<Integer> col = new ArrayList<Integer>();
         col.add(12);
         col.add(13);
-        Collection<Integer> newCol = with(singleLst).addAll(col).get();
-        assertEquals(3, newCol.size() );
+        on(singleLst).addAll(col);
+        assertEquals(3, singleLst.size() );
     }
 
     /**
@@ -121,8 +132,8 @@ public class CollectionSafeProxyTest {
                 return arg.toString();
             }
         }
-        Collection<String> col = with(singleLst).map(new ToString()).get();
-        String str = (String) ((List) col).get(1);
+        on(singleLst).map(new ToString());
+        String str = (String) ((List) singleLst).get(1);
         assertEquals( Integer.toString(SINGLE_ELEM), str);
     }
 
@@ -144,19 +155,10 @@ public class CollectionSafeProxyTest {
         }
         final int NEW_ELEM = 665;
         singleLst.add(NEW_ELEM);
-        int result = with(singleLst).reduce(new Sum());
+        int result = on(singleLst).reduce(new Sum());
         assertEquals(NEW_ELEM+SINGLE_ELEM, result);
     }
 
 
-
-    /**
-     * Test of add method, of class CollectionSafeProxy.
-     */
-    @Test
-    public void testAdd() {
-        Collection<Integer> lst = with( singleLst ).add(3).get();
-        assertEquals( 2, lst.size() );
-    }
 
 }
