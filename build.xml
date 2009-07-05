@@ -1,9 +1,12 @@
 <project name="facade" basedir="." default="compile">
 
+    <property name="version"     value="0.0.1"/>
+
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
     <property name="dist.dir"     value="dist"/>
     <property name="lib.dir"     value="lib"/>
+    <property name="doc.dir"     value="doc"/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
@@ -13,9 +16,10 @@
     <target name="clean">
         <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
+	<delete dir="${doc.dir}" />
     </target>
-
-
+    
+    
     <target name="compile">
       <mkdir dir="${build.dir}"/>
       <javac srcdir="${src.dir}" destdir="${build.dir}">
@@ -25,12 +29,56 @@
 	</classpath>
       </javac>
     </target>
-
+    
     <target name="jar" depends="compile">
       <mkdir dir="${dist.dir}"/>
       <jar destfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}"/>
     </target>
     
-    <target name="clean-build" depends="clean,jar"/>
+    <target name="rebuild" depends="clean,jar"/>
+    
+    <target name="doc">
+      <mkdir dir="${doc.dir}" />
+      <javadoc packagenames="facade.*"
+	       classpathref="classpath"
+	       sourcepath="src"
+	       defaultexcludes="yes"
+	       destdir="${doc.dir}" />
+    </target>
+
+    <target name="src-dist" depends="compile" >
+      <mkdir dir="${dist.dir}"/>
+      <tar longfile="gnu"
+	   compression="gzip"
+	   destfile="${dist.dir}/${ant.project.name}_v${version}-src.tgz">
+	<tarfileset prefix="${ant.project.name}_v${version}/" dir=".">
+	  <include name="${src.dir}/**" />
+	  <include name="${lib.dir}/*.jar" />
+	  <include name="README.mkd"/>
+	  <include name="LICENSE"/>
+	  <include name="build.xml"/>
+	</tarfileset>
+      </tar>
+    </target>
+
+    <target name="bin-dist" depends="jar,doc" >
+      <mkdir dir="${dist.dir}"/>
+      <tar longfile="gnu"
+	   compression="gzip"
+	   destfile="${dist.dir}/${ant.project.name}_v${version}-bin.tgz">
+	<tarfileset prefix="${ant.project.name}_v${version}/" dir=".">
+	  <include name="${doc.dir}/**" />
+	  <include name="${dist.dir}/*.jar" />
+	  <include name="${lib.dir}/*.jar" />
+	  <include name="README.mkd"/>
+	  <include name="LICENSE"/>
+	</tarfileset>
+      </tar>
+    </target>
+
+    <target name="dist" depends="bin-dist,src-dist" />
+
+    <target name="redist" depends="clean,dist" />
+
     
 </project>

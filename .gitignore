@@ -1,6 +1,7 @@
 *~
 build/
 dist/
+doc/
 manifest.mf
 nbbuild.xml
 nbproject/
