@@ -7,6 +7,8 @@
     <property name="dist.dir"     value="dist"/>
     <property name="lib.dir"     value="lib"/>
     <property name="doc.dir"     value="doc"/>
+    <property name="test.dir"     value="test"/>
+    <property name="reports.dir"     value="reports"/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
@@ -76,9 +78,30 @@
       </tar>
     </target>
 
+
+
     <target name="dist" depends="bin-dist,src-dist" />
 
     <target name="redist" depends="clean,dist" />
 
+    <target name="test" depends="jar">
+      
+      <mkdir dir="${reports.dir}/raw" />
+
+      <junit printsummary="yes" showoutput="yes" >
+        <classpath>
+          <path location="${dist.dir}/${ant.project.name}.jar"/>
+	  <path location="${build.dir}/test" />
+	</classpath>                   
+	
+        <batchtest fork="no" todir="${reports.dir}/raw/">
+          <formatter type="plain"/>
+          <fileset dir="${test.dir}">
+            <include name="**/*Test.java"/>
+          </fileset>
+        </batchtest>
+      </junit> 
+      
+    </target>
     
 </project>
