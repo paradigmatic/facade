@@ -43,7 +43,4 @@ public class Collections {
         return new CollectionInPlaceProxy<T>( collection );
     }
 
-    public static <T> GeneratorProxy<T> generateWith( Factory<T> factory ) {
-        return new GeneratorProxy<T>( factory );
-    }
 }

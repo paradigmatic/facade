@@ -1,0 +1,10 @@
+*~
+build/
+dist/
+manifest.mf
+nbbuild.xml
+nbproject/
+lib/CopyLibs/
+lib/junit
+lib/junit_4
+lib/nblibraries*
