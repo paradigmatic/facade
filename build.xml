@@ -32,6 +32,19 @@
       </javac>
     </target>
     
+
+    <target name="compile-tests" depends="jar">
+      <mkdir dir="${build.dir}"/>
+      <mkdir dir="${build.dir}/test"/>
+      <javac srcdir="${test.dir}" destdir="${build.dir}/test">
+        <classpath>
+          <path refid="classpath"/>
+          <path location="${build.dir}/${ant.project.name}.jar"/>
+	</classpath>
+      </javac>
+    </target>
+    
+
     <target name="jar" depends="compile">
       <mkdir dir="${dist.dir}"/>
       <jar destfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}"/>
@@ -84,7 +97,7 @@
 
     <target name="redist" depends="clean,dist" />
 
-    <target name="test" depends="jar">
+    <target name="test" depends="compile-tests,jar">
       
       <mkdir dir="${reports.dir}/raw" />
 
