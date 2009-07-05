@@ -17,8 +17,6 @@
  *  (c) 2009, Jean-Luc Falcone, jean-luc.falcone@unige.ch
  *
  */
-
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -62,13 +60,13 @@ public class CollectionSafeProxy<T> implements CollectionProxy<T> {
     public CollectionProxy<T> select(Predicate<T> pred) {
         Collection<T> newCollection = null;
         try { //TODO: define a proper exception management
-            newCollection = cloneCollection();
+            newCollection = emptyCloneCollection();
         } catch (InstantiationException ex) {
             Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Iterator<T> it = new FilterIterator(newCollection.iterator(), pred);
+        Iterator<T> it = new FilterIterator(collection.iterator(), pred);
         while (it.hasNext()) {
             newCollection.add(it.next());
         }
@@ -101,13 +99,13 @@ public class CollectionSafeProxy<T> implements CollectionProxy<T> {
             Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
         }
         return nextProxy;
-       
+
     }
 
     public CollectionProxy<T> addAll(Collection<T> otherCollection) {
         CollectionProxy<T> nextProxy = null;
         try {
-            nextProxy = new CollectionInPlaceProxy<T>(cloneCollection()).addAll( otherCollection );
+            nextProxy = new CollectionInPlaceProxy<T>(cloneCollection()).addAll(otherCollection);
         } catch (InstantiationException ex) {
             Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -116,12 +114,20 @@ public class CollectionSafeProxy<T> implements CollectionProxy<T> {
         return nextProxy;
     }
 
-    private Collection cloneCollection() throws InstantiationException, IllegalAccessException {
-        return collection.getClass().newInstance();
+    private Collection<T> cloneCollection() throws InstantiationException, IllegalAccessException {
+        Collection<T> cloned = emptyCloneCollection();
+        cloned.addAll(collection);
+        return cloned;
+    }
+
+
+    private Collection<T> emptyCloneCollection() throws InstantiationException, IllegalAccessException {
+        Collection<T> cloned = collection.getClass().newInstance();
+        return cloned;
     }
 
     public <E> CollectionProxy<E> map(Transformer<T, E> transformer) {
-         CollectionProxy<E> nextProxy = null;
+        CollectionProxy<E> nextProxy = null;
         try {
             nextProxy = new CollectionInPlaceProxy<T>(cloneCollection()).map(transformer);
         } catch (InstantiationException ex) {
@@ -143,5 +149,4 @@ public class CollectionSafeProxy<T> implements CollectionProxy<T> {
         }
         return result;
     }
-
 }

@@ -72,10 +72,11 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
     }
 
     public CollectionProxy<T> select(Predicate<T> pred) {
-        for( T t : collection ) {
-            System.out.println("ELEM: " + t);
+        Iterator<T> it = collection.iterator();
+        while( it.hasNext() ) {
+            T t = it.next();
             if( ! pred.evaluate(t) ) {
-                collection.remove(t);
+                it.remove();
             }
         }
         return this;

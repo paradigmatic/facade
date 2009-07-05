@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static facade.Collections.*;
+import static facade.Collections.on;
 
 
 /**
@@ -66,9 +66,9 @@ public class CollectionInPlaceProxyTest {
      */
     @Test
     public void testSelect() {
-        with(singleLst).select(truePred).get();
+        on(singleLst).select(truePred).get();
         assertEquals(1, singleLst.size());
-        with(singleLst).select(falsePred).get();
+        on(singleLst).select(falsePred).get();
         assertEquals(0, singleLst.size());
     }
 
@@ -77,9 +77,9 @@ public class CollectionInPlaceProxyTest {
      */
     @Test
     public void testReject() {
-        with(singleLst).reject(falsePred).get();
+        on(singleLst).reject(falsePred).get();
         assertEquals(1, singleLst.size());
-        with(singleLst).reject(truePred).get();
+        on(singleLst).reject(truePred).get();
         assertEquals(0, singleLst.size());
     }
 
@@ -133,7 +133,7 @@ public class CollectionInPlaceProxyTest {
             }
         }
         on(singleLst).map(new ToString());
-        String str = (String) ((List) singleLst).get(1);
+        String str = (String) ((List) singleLst).get(0);
         assertEquals( Integer.toString(SINGLE_ELEM), str);
     }
 
