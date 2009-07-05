@@ -2,7 +2,8 @@
 build/
 dist/
 doc/
-coverage
+coverage/
+reports/
 manifest.mf
 nbbuild.xml
 nbproject/
