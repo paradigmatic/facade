@@ -101,5 +101,10 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
         return result;
     }
 
+    public String join(String separator) {
+        return Common.join( collection, separator );
+    }
+
+
 
 }

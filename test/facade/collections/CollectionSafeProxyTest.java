@@ -159,4 +159,18 @@ public class CollectionSafeProxyTest {
         assertEquals( 2, lst.size() );
     }
 
+    /**
+     * Test of join method, of class CollectionSafeProxy.
+     */
+    @Test
+    public void testJoin() {
+        final int SECOND = 665;
+        final int THIRD = 333;
+        final String SEPARATOR = ", ";
+        singleLst.add(SECOND);
+        singleLst.add(THIRD);
+        String str = with(singleLst).join(", ");
+        assertEquals( SINGLE_ELEM+SEPARATOR+SECOND+SEPARATOR+THIRD, str);
+    }
+
 }

@@ -1,3 +1,4 @@
+
 /*  
  * This file is part of Facade
  *
@@ -55,6 +56,12 @@ public interface CollectionProxy<T> {
 
     public <R> R reduce( Reducer<T,R> reducer );
 
-
+    /**
+     * Convert every collection element to a string which are join to produce
+     * a single string representation. The separator is added between each elements.
+     * @param separator The separator is added between each element.
+     * @return The produced string.
+     */
+    public String join( String separator );
 
 }
