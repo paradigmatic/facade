@@ -17,23 +17,30 @@
  *  (c) 2009, Jean-Luc Falcone, jean-luc.falcone@unige.ch
  *
  */
-
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package facade.functors;
 
 /**
- *
- * @author falcone
+ * Allows to reduce a collection to a single value. The reduction operation
+ * can be non-commutative or non associative.
+ * @since 0.0.1
  */
 public interface Reducer<T,R> {
 
+    /**
+     * Gets the neutral element for the operation defined in the reduce method.
+     * The neutral element depends also on the operands type. For example, an neutral
+     * element for a reducer multiplying doubles should be '1.0'.
+     * @return the neutral element
+     */
     public R neutralElement();
 
+    /**
+     * Reduce an element and an accumulator to a single value. Can be of a different
+     * type than the element
+     * @param t a new element to be reduced
+     * @param accumulator the reduction result so far.
+     * @return the reduction result.
+     */
     public R reduce( T t, R accumulator );
 
 }

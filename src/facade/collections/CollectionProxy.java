@@ -30,6 +30,7 @@ import org.apache.commons.collections15.Transformer;
 /**
  * Wraps a collection. Depending of the implementation,
  * the actions can act on a copy or in place.
+ * @since 0.0.1
  */
 public interface CollectionProxy<T> {
 

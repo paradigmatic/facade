@@ -17,21 +17,17 @@
  *  (c) 2009, Jean-Luc Falcone, jean-luc.falcone@unige.ch
  *
  */
-
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package facade;
 
-import facade.collections.*;
-import java.util.*;
-import org.apache.commons.collections15.Factory;
+import facade.collections.CollectionInPlaceProxy;
+import facade.collections.CollectionProxy;
+import facade.collections.CollectionSafeProxy;
+import java.util.Collection;
+
+
 /**
- *
- * @author falcone
+ * Provides static wrapper method to Collections.
+ * @since 0.0.1
  */
 public class Collections {
 
