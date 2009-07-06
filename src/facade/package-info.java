@@ -17,24 +17,9 @@
  *  (c) 2009, Jean-Luc Falcone, jean-luc.falcone@unige.ch
  *
  */
-package facade;
-
-import facade.strings.BasicStringProxy;
-import facade.strings.StringProxy;
 
 /**
- * Provides static wrapper method for Strings.
- * @since 0.0.1
+ * Contains the static wrapper methods.
  */
-public class Strings {
+package facade;
 
-    /**
-     * Wraps a string in a StringProxy
-     * @param str The string to be wrapped
-     * @return A wrapping StringProxy
-     */
-    static public StringProxy string( String str ) {
-        return new BasicStringProxy( str );
-    }
-
-}

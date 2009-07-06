@@ -17,25 +17,23 @@
  *  (c) 2009, Jean-Luc Falcone, jean-luc.falcone@unige.ch
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package facade.collections;
 
-import facade.collections.CollectionInPlaceProxy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import facade.functors.Generator;
 import facade.functors.Reducer;
-import org.apache.commons.collections15.iterators.*;
-import org.apache.commons.collections15.functors.*;
-import org.apache.commons.collections15.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import org.apache.commons.collections15.Closure;
+import org.apache.commons.collections15.Predicate;
+import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections15.functors.NotPredicate;
+import org.apache.commons.collections15.iterators.FilterIterator;
 
 /**
- *
- * @author falcone
+ * Wraps a collection in a proxy that does not change the collection but copy it.
+ * The collection must an empty constructor to be cloned.
+ * @since 0.0.1
  */
 public class CollectionSafeProxy<T> implements CollectionProxy<T> {
 

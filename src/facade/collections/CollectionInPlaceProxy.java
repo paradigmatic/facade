@@ -17,25 +17,22 @@
  *  (c) 2009, Jean-Luc Falcone, jean-luc.falcone@unige.ch
  *
  */
-
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package facade.collections;
 
-import facade.functors.*;
-import facade.functors.Generator;
 import facade.functors.Reducer;
-import org.apache.commons.collections15.functors.*;
-import org.apache.commons.collections15.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import org.apache.commons.collections15.Closure;
+import org.apache.commons.collections15.Predicate;
+import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections15.functors.NotPredicate;
+
 
 /**
- *
- * @author falcone
+ * Wraps a collection and allow actions to modify it directly.
+ * @since 0.0.1
  */
 public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
 

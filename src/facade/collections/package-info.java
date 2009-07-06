@@ -1,4 +1,4 @@
-/*  
+/*
  * This file is part of Facade
  *
  *  Facade is free software: you can redistribute it and/or modify
@@ -18,22 +18,8 @@
  *
  */
 
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package facade.functors;
-
-import java.util.*;
-
 /**
- *
- * @author falcone
+ * Collections proxies and convenience methods.
  */
-public interface Generator<T> extends Iterator<T>, Iterable<T>  {
+package facade.collections;
 
-    public void fill( Collection<T> collection );
-
-}

@@ -1,7 +1,9 @@
 Description
 ===========
 
-_Facade_ is a library design to make the use of java standard API less verbose and boring. It combines the use of a "natural language" like syntax and functional programming techniques.
+_Facade_ is a library design to make the use of java standard API less verbose
+and boring. It combines the use of a "natural language" like syntax and
+functional programming techniques.
 
 Installation
 ============
@@ -10,5 +12,64 @@ Requirements
 ------------
 
  * Java plateform JDK (tested and developed with 1.6 but 1.5 should also work).
- * [Collections15](http://collections15.sourceforge.net/index.html)
+ * [Collections15](http://collections15.sourceforge.net/index.html) _(included)_
 
+Additionaly, you will need to install the [ant]{http://ant.apache.org/} tool if
+you want to build it from source.
+
+
+Download
+--------
+
+You can grab the latest archives of _Facade_ project at GitHub
+[download page](http://github.com/paradigmatic/facade/downloads).
+
+Alternatively, you can use the Git source manager to directly clone the current
+developement repository with:
+
+        $ git clone git://github.com/paradigmatic/facade.git
+
+Binary edition
+--------------
+
+Simply dowload and unpack the tarball. The jar can be directly used in classpath
+and the documentation is already generated. The required dependcies are included
+in the lib directory.
+
+Source edition
+--------------
+
+The project use ant as a build tool. To compile and produce the jar:
+
+        $ ant jar
+
+To compile the javadoc:
+
+        $ ant doc
+
+To run the tests:
+
+        $ ant tests
+
+The required dependencies are included in the lib directory.
+
+
+Usage
+=====
+
+Example
+=======
+
+Support and Collaboration
+=========================
+
+You can get help through the following methods:
+
+* Read the project [wiki]{http://wiki.github.com/paradigmatic/facade/}
+* Open an entry in the project [issue tracker]{}
+* Email the project maintainer: jean-luc[dot]falcone[at]unige[dot]ch
+
+Do not hesitate to send critics and feature requests.
+
+If you want to collaborate, start a _free_ [github]{http://github.com} account and visit the
+project [repository]{http://github.com/paradigmatic/facade/tree/master}.
