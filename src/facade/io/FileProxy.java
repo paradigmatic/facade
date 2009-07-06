@@ -26,7 +26,6 @@
 
 package facade.io;
 
-import java.util.*;
 import java.io.*;
 
 /**
@@ -35,7 +34,6 @@ import java.io.*;
  */
 public interface FileProxy {
 
-    public boolean isDirectory();
     public FileIterator lineIterator() throws IOException;
     public FileProxy append( String s ) throws IOException;
     public FileProxy create() throws IOException;
@@ -43,6 +41,5 @@ public interface FileProxy {
     public FileProxy blank() throws IOException;
     public FileProxy moveTo( String path ) throws IOException;
     public FileProxy copyTo( String path ) throws IOException;
-    public FileProxy ifExists();
-    public FileProxy unlessExists();
+
 }

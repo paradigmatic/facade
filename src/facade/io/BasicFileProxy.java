@@ -26,7 +26,6 @@
 
 package facade.io;
 
-import java.util.Iterator;
 import java.io.*;
 import java.nio.channels.*;
 /**
@@ -49,11 +48,8 @@ public class BasicFileProxy implements FileProxy {
         this( new File( filename ) );
     }
 
-    public boolean isDirectory() {
-        return false;
-    }
 
-    // WARNING: should read the whole file...
+   // WARNING: should read the whole file...
     public FileIterator lineIterator() throws IOException {
         return new FileIterator( file );
     }
@@ -66,7 +62,7 @@ public class BasicFileProxy implements FileProxy {
     }
 
     /*
-     * If the file exists do nothing
+     * If the file exists exception
      */
     public FileProxy create() throws IOException {
         if( file.exists() ) {
@@ -116,21 +112,7 @@ public class BasicFileProxy implements FileProxy {
       return new BasicFileProxy( copy );
     }
 
-    public FileProxy ifExists() {
-        if( file.exists() ) {
-            return this;
-        } else {
-            return new NopFileFileProxy();
-        }
-    }
 
-    public FileProxy unlessExists() {
-        if( file.exists() ) {
-            return new NopFileFileProxy();
-        } else {
-            return this;
-        }
-    }
 
     private IOException newIOException( String prefix, String suffix ) {
         return new IOException( prefix + " " + file.getName() + " " + suffix );
