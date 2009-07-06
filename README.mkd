@@ -1,7 +1,9 @@
 Description
 ===========
 
-_Facade_ is a library design to make the use of java standard API less verbose and boring. It combines the use of a "natural language" like syntax and functional programming techniques.
+_Facade_ is a library design to make the use of java standard API less verbose
+and boring. It combines the use of a "natural language" like syntax and
+functional programming techniques.
 
 Installation
 ============
@@ -15,6 +17,14 @@ Requirements
 
 Download
 --------
+
+You can grab the latest archives of _Facade_ project at GitHub
+[download page](http://github.com/paradigmatic/facade/downloads).
+
+Alternatively, you can use the Git source manager to directly clone the current
+developement repository with:
+
+        $ git clone git://github.com/paradigmatic/facade.git
 
 Binary edition
 --------------
