@@ -18,16 +18,9 @@
  *
  */
 
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package facade.collections;
 
 import facade.functors.*;
-import facade.functors.Generator;
 import facade.functors.Reducer;
 import org.apache.commons.collections15.functors.*;
 import org.apache.commons.collections15.*;

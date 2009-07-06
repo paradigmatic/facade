@@ -17,10 +17,7 @@
  *  (c) 2009, Jean-Luc Falcone, jean-luc.falcone@unige.ch
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package facade.collections;
 
 import facade.collections.CollectionInPlaceProxy;
