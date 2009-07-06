@@ -46,4 +46,8 @@ public class BasicStringProxy implements StringProxy {
         }
     }
 
+    public int toInt() {
+        return Integer.parseInt(str);
+    }
+
 }

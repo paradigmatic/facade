@@ -50,5 +50,11 @@ public class BasicStringProxyTest {
         assertEquals( null, parsed );
     }
 
+    @Test
+    public void testToInt() {
+        assertEquals( 23, string(FIRST).toInt() );
+        assertEquals( 57, string(SECOND).toInt() );
+    }
+
 
 }

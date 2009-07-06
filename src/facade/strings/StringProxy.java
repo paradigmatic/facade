@@ -30,5 +30,11 @@ public interface StringProxy {
      */
     List<String> parse( String regexp );
 
+    /**
+     * Attempt to parse an string as an integer.
+     * @return The int value
+     */
+    int toInt();
+
 
 }
