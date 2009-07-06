@@ -28,6 +28,8 @@ package facade.io;
 
 import java.io.*;
 import java.nio.channels.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 /**
  *
@@ -124,7 +126,12 @@ public class BasicFileProxy implements FileProxy {
     }
 
     public List<String> lines() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<String> lines = new ArrayList<String>();
+        Iterator<String> it = lineIterator();
+        while( it.hasNext() ) {
+            lines.add( it.next() );
+        }
+        return lines;
     }
 
 
