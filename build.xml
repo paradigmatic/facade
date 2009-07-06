@@ -1,3 +1,4 @@
+
 <project name="facade" basedir="." default="compile">
 
     <property name="version"     value="0.0.1"/>
@@ -18,43 +19,45 @@
     <target name="clean">
         <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
-	<delete dir="${doc.dir}" />
+        <delete dir="${doc.dir}" />
     </target>
     
     
     <target name="compile">
-      <mkdir dir="${build.dir}"/>
-      <javac srcdir="${src.dir}" destdir="${build.dir}">
-        <classpath>
-          <path refid="classpath"/>
-          <path location="${build.dir}/${ant.project.name}.jar"/>
-	</classpath>
-      </javac>
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${build.dir}/${ant.project.name}.jar"/>
+            </classpath>
+        </javac>
     </target>
     
 
     <target name="compile-tests" depends="jar">
-      <mkdir dir="${build.dir}"/>
-      <mkdir dir="${build.dir}/test"/>
-      <javac srcdir="${test.dir}" destdir="${build.dir}/test">
-        <classpath>
-          <path refid="classpath"/>
-          <path location="${build.dir}/${ant.project.name}.jar"/>
-	</classpath>
-      </javac>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.dir}/test"/>
+        <javac srcdir="${test.dir}" destdir="${build.dir}/test">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${build.dir}/${ant.project.name}.jar"/>
+            </classpath>
+        </javac>
     </target>
     
 
     <target name="jar" depends="compile">
-      <mkdir dir="${dist.dir}"/>
-      <jar destfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}">
+            <fileset file="LICENSE" />
+        </jar>
     </target>
     
     <target name="rebuild" depends="clean,jar"/>
     
     <target name="doc">
-      <mkdir dir="${doc.dir}" />
-      <javadoc packagenames="facade.*"
+        <mkdir dir="${doc.dir}" />
+        <javadoc packagenames="facade.*"
 	       classpathref="classpath"
 	       sourcepath="src"
 	       defaultexcludes="yes"
@@ -63,33 +66,33 @@
     </target>
 
     <target name="src-dist" depends="compile" >
-      <mkdir dir="${dist.dir}"/>
-      <tar longfile="gnu"
+        <mkdir dir="${dist.dir}"/>
+        <tar longfile="gnu"
 	   compression="gzip"
 	   destfile="${dist.dir}/${ant.project.name}_v${version}-src.tgz">
-	<tarfileset prefix="${ant.project.name}_v${version}/" dir=".">
-	  <include name="${src.dir}/**" />
-	  <include name="${lib.dir}/*.jar" />
-	  <include name="README.mkd"/>
-	  <include name="LICENSE"/>
-	  <include name="build.xml"/>
-	</tarfileset>
-      </tar>
+            <tarfileset prefix="${ant.project.name}_v${version}/" dir=".">
+                <include name="${src.dir}/**" />
+                <include name="${lib.dir}/*.jar" />
+                <include name="README.mkd"/>
+                <include name="LICENSE"/>
+                <include name="build.xml"/>
+            </tarfileset>
+        </tar>
     </target>
 
     <target name="bin-dist" depends="jar,doc" >
-      <mkdir dir="${dist.dir}"/>
-      <tar longfile="gnu"
+        <mkdir dir="${dist.dir}"/>
+        <tar longfile="gnu"
 	   compression="gzip"
 	   destfile="${dist.dir}/${ant.project.name}_v${version}-bin.tgz">
-	<tarfileset prefix="${ant.project.name}_v${version}/" dir=".">
-	  <include name="${doc.dir}/**" />
-	  <include name="${dist.dir}/*.jar" />
-	  <include name="${lib.dir}/*.jar" />
-	  <include name="README.mkd"/>
-	  <include name="LICENSE"/>
-	</tarfileset>
-      </tar>
+            <tarfileset prefix="${ant.project.name}_v${version}/" dir=".">
+                <include name="${doc.dir}/**" />
+                <include name="${dist.dir}/*.jar" />
+                <include name="${lib.dir}/*.jar" />
+                <include name="README.mkd"/>
+                <include name="LICENSE"/>
+            </tarfileset>
+        </tar>
     </target>
 
 
@@ -98,24 +101,29 @@
 
     <target name="redist" depends="clean,dist" />
 
+<!--
+
+    The test target is currently not working...
+
     <target name="test" depends="compile-tests,jar">
       
-      <mkdir dir="${reports.dir}/raw" />
+        <mkdir dir="${reports.dir}/raw" />
 
-      <junit printsummary="yes" showoutput="yes" >
-        <classpath>
-          <path location="${dist.dir}/${ant.project.name}.jar"/>
-	  <path location="${build.dir}/test" />
-	</classpath>                   
+        <junit printsummary="yes" showoutput="yes" >
+            <classpath>
+                <path location="${dist.dir}/${ant.project.name}.jar"/>
+                <path location="${build.dir}/test" />
+            </classpath>
 	
-        <batchtest fork="no" todir="${reports.dir}/raw/">
-          <formatter type="plain"/>
-          <fileset dir="${test.dir}">
-            <include name="**/*Test.java"/>
-          </fileset>
-        </batchtest>
-      </junit> 
+            <batchtest fork="no" todir="${reports.dir}/raw/">
+                <formatter type="plain"/>
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
       
     </target>
-    
+ -->
+
 </project>

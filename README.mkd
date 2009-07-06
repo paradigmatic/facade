@@ -14,6 +14,9 @@ Requirements
  * Java plateform JDK (tested and developed with 1.6 but 1.5 should also work).
  * [Collections15](http://collections15.sourceforge.net/index.html) _(included)_
 
+Additionaly, you will need to install the [ant]{http://ant.apache.org/} tool if
+you want to build it from source.
+
 
 Download
 --------
@@ -59,3 +62,14 @@ Example
 
 Support and Collaboration
 =========================
+
+You can get help through the following methods:
+
+* Read the project [wiki]{http://wiki.github.com/paradigmatic/facade/}
+* Open an entry in the project [issue tracker]{}
+* Email the project maintainer: jean-luc[dot]falcone[at]unige[dot]ch
+
+Do not hesitate to send critics and feature requests.
+
+If you want to collaborate, start a _free_ [github]{http://github.com} account and visit the
+project [repository]{http://github.com/paradigmatic/facade/tree/master}.
