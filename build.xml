@@ -58,7 +58,8 @@
 	       classpathref="classpath"
 	       sourcepath="src"
 	       defaultexcludes="yes"
-	       destdir="${doc.dir}" />
+	       destdir="${doc.dir}"
+               Overview="${src.dir}/overview.html" />
     </target>
 
     <target name="src-dist" depends="compile" >
