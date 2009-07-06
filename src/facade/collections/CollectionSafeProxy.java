@@ -26,7 +26,6 @@ package facade.collections;
 import facade.collections.CollectionInPlaceProxy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import facade.functors.Generator;
 import facade.functors.Reducer;
 import org.apache.commons.collections15.iterators.*;
 import org.apache.commons.collections15.functors.*;

@@ -8,8 +8,8 @@ package facade.strings;
 import java.util.List;
 
 /**
- *
- * @author falcone
+ * Wraps a {@link java.lang.String string} to allow easy manipulation. As the strings are immutable,
+ * any usage is always safe for the wrapped string.
  */
 public interface StringProxy {
 
