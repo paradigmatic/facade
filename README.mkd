@@ -10,5 +10,42 @@ Requirements
 ------------
 
  * Java plateform JDK (tested and developed with 1.6 but 1.5 should also work).
- * [Collections15](http://collections15.sourceforge.net/index.html)
+ * [Collections15](http://collections15.sourceforge.net/index.html) _(included)_
 
+
+Download
+--------
+
+Binary edition
+--------------
+
+Simply dowload and unpack the tarball. The jar can be directly used in classpath
+and the documentation is already generated. The required dependcies are included
+in the lib directory.
+
+Source edition
+--------------
+
+The project use ant as a build tool. To compile and produce the jar:
+
+        $ ant jar
+
+To compile the javadoc:
+
+        $ ant doc
+
+To run the tests:
+
+        $ ant tests
+
+The required dependencies are included in the lib directory.
+
+
+Usage
+=====
+
+Example
+=======
+
+Support and Collaboration
+=========================
