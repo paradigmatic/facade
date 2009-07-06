@@ -27,6 +27,7 @@
 package facade.io;
 
 import java.io.*;
+import java.util.List;
 
 /**
  *
@@ -35,6 +36,7 @@ import java.io.*;
 public interface FileProxy {
 
     public FileIterator lineIterator() throws IOException;
+    public List<String> lines() throws IOException;
     public FileProxy append( String s ) throws IOException;
     public FileProxy create() throws IOException;
     public FileProxy delete() throws IOException;

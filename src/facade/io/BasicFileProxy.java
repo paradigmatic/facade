@@ -28,6 +28,7 @@ package facade.io;
 
 import java.io.*;
 import java.nio.channels.*;
+import java.util.List;
 /**
  *
  * @author falcone
@@ -119,6 +120,10 @@ public class BasicFileProxy implements FileProxy {
     }
 
     public FileProxy blank() throws IOException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public List<String> lines() throws IOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

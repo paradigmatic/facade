@@ -27,6 +27,8 @@ package facade.io;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -100,6 +102,10 @@ public class FileIterator implements Iterator<String> {
         }
     }
     public void close() {
-        reader.close();
+        try {
+            reader.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FileIterator.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
