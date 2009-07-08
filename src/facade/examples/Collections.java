@@ -79,7 +79,7 @@ public class Collections {
         /* List of resistors */
         Collection<Double> resistors = new ArrayList<Double>();
         /* adding values */
-        on(resistors).add(1.5).add(3.0).add(15.0).add(30.0).add(150.0);
+        on(resistors).add(1.5, 3.0, 15.0, 30.0, 150.0);
         
         /* computing equivalent resistor while in parallel */
         double r = 1.0 / with(resistors).map(inverse).reduce(sum);
