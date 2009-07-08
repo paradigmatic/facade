@@ -102,6 +102,17 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
         return Common.join( collection, separator );
     }
 
+    public CollectionProxy<T> add(T... t) {
+        return addAll( t );
+    }
+
+    public CollectionProxy<T> addAll(T[] array) {
+        for( T t: array )  {
+            collection.add( t );
+        }
+        return this;
+    }
+
 
 
 }

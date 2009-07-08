@@ -45,14 +45,30 @@ public interface CollectionProxy<T> {
      * @param t the element to be added
      * @return a CollectionProxy
      */
-    public CollectionProxy <T> add(T t);
+    public CollectionProxy<T> add(T t);
+
+    /**
+     * Adds several elements to the wrapped collection.
+     * @param t the parameters to be added
+     * @return a CollectionProxy
+     */
+    public CollectionProxy<T> add(T ... t);
+
 
     /**
      * Adds all the element of a collection to the wrapped collection.
      * @param otherCollection a collection of element to be added
      * @return a collectionProxy
      */
-    public CollectionProxy addAll(Collection<T> otherCollection);
+    public CollectionProxy<T> addAll(Collection<T> otherCollection);
+
+
+    /**
+     * Adds all the element of an array to the wrapped collection.
+     * @param array an array whose elements will be added
+     * @return a collectionProxy
+     */
+    public CollectionProxy<T> addAll( T[] array);
 
     /**
      * Filters a collection by selecting appropriate elements. Evaluates a predicate

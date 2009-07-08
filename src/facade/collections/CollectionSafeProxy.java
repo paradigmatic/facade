@@ -151,4 +151,20 @@ public class CollectionSafeProxy<T> implements CollectionProxy<T> {
     public String join(String separator) {
         return Common.join( collection, separator );
     }
+
+    public CollectionProxy<T> add(T... t) {
+        return addAll( t );
+    }
+
+    public CollectionProxy<T> addAll(T[] array) {
+        CollectionProxy<T> nextProxy = null;
+        try {
+            nextProxy = new CollectionInPlaceProxy<T>(cloneCollection()).addAll( array );
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(CollectionSafeProxy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nextProxy;
+    }
 }

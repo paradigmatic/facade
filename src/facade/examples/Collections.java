@@ -52,11 +52,11 @@ public class Collections {
     private static Reducer<Double, Double> sum = new Reducer<Double, Double>() {
 
         public Double neutralElement() {
-            return 1.0;
+            return 0.0;
         }
 
         public Double reduce(Double t, Double accumulator) {
-            return t * accumulator;
+            return t + accumulator;
         }
     };
     /**
@@ -80,6 +80,7 @@ public class Collections {
         Collection<Double> resistors = new ArrayList<Double>();
         /* adding values */
         on(resistors).add(1.5).add(3.0).add(15.0).add(30.0).add(150.0);
+        
         /* computing equivalent resistor while in parallel */
         double r = 1.0 / with(resistors).map(inverse).reduce(sum);
         /* printing the original collection (untouched because of the 'with()'
@@ -87,6 +88,20 @@ public class Collections {
         System.out.println( "[ "+with(resistors).join(", ") + " ]" );
         /* printing the equivalent resistor */
         System.out.println( r );
+        
+        /* Classic java */
+        resistors = new ArrayList<Double>();
+        resistors.add(1.5);
+        resistors.add(3.0);
+        resistors.add(15.0);
+        resistors.add(30.0);
+        resistors.add(150.0);
+        double sum = 0.0;
+        for( Double resistor: resistors ) {
+            sum += 1.0 / resistor;
+        }
+        r = 1.0 / sum;
+
 
     }
 }

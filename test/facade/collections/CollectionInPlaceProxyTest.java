@@ -110,6 +110,17 @@ public class CollectionInPlaceProxyTest {
         assertEquals(2, singleLst.size());
     }
 
+
+
+    /**
+     * Test of add method with varargs, of class CollectionSafeProxy.
+     */
+    @Test
+    public void testAddVarArgs() {
+        on(singleLst).add( 12, 13);
+        assertEquals(3, singleLst.size());
+    }
+
     /**
      * Test of addAll method, of class CollectionSafeProxy.
      */
@@ -119,6 +130,16 @@ public class CollectionInPlaceProxyTest {
         col.add(12);
         col.add(13);
         on(singleLst).addAll(col);
+        assertEquals(3, singleLst.size() );
+    }
+
+    /**
+     * Test of addAll array method, of class CollectionSafeProxy.
+     */
+    @Test
+    public void testAddAllArray() {
+        Integer[] ary = { 12, 13 };
+        on(singleLst).addAll( ary );
         assertEquals(3, singleLst.size() );
     }
 
