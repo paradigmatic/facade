@@ -22,7 +22,7 @@ package facade.examples;
 import facade.functors.Reducer;
 import java.util.ArrayList;
 import java.util.Collection;
-import org.apache.commons.collections15.Predicate;
+import java.util.Iterator;
 import org.apache.commons.collections15.Transformer;
 import static facade.Collections.*;
 
@@ -32,76 +32,81 @@ import static facade.Collections.*;
  */
 public class Collections {
 
-    /* Return true if an integer is even */
-    private static Predicate<Integer> isEven = new Predicate<Integer>() {
-
-        public boolean evaluate(Integer i) {
-            return i % 2 == 0;
-        }
-    };
-
     /* Invert a double */
     private static Transformer<Double, Double> inverse = new Transformer<Double, Double>() {
 
-        public Double transform(Double arg0) {
+        public Double transform( Double arg0 ) {
             return 1.0 / arg0;
         }
     };
 
-    /* Reduce double by summation */
+    /* Reduce doubles by summation */
     private static Reducer<Double, Double> sum = new Reducer<Double, Double>() {
 
         public Double neutralElement() {
             return 0.0;
         }
 
-        public Double reduce(Double t, Double accumulator) {
+        public Double reduce( Double t, Double accumulator ) {
             return t + accumulator;
         }
     };
+
     /**
      * Run the examples
      * @param args <i>ignored</i>
      */
-    public static void main(String[] args) {
+    public static void main( String[] args ) {
 
-        /* List of 20 natural numbers */
-        Collection<Integer> col = new ArrayList<Integer>();
-        for (int i = 0; i < 20; i++) {
-            col.add(i);
-        }
-        /* Filter in place taking only negative numbers */
-        on(col).select(isEven);
-        /* Join and print */
-        System.out.println(on(col).join("-"));
-        System.out.println();
+        /* RESISTORS IN PARALLEL WITH FACADE */
 
-        /* List of resistors */
+        System.out.println( "-> With facade: " );
+        /* Empty collection of resistors */
         Collection<Double> resistors = new ArrayList<Double>();
-        /* adding values */
-        on(resistors).add(1.5, 3.0, 15.0, 30.0, 150.0);
-        
-        /* computing equivalent resistor while in parallel */
-        double r = 1.0 / with(resistors).map(inverse).reduce(sum);
-        /* printing the original collection (untouched because of the 'with()'
-         * method */
-        System.out.println( "[ "+with(resistors).join(", ") + " ]" );
+        /* adding values. on() modifies the collection in place */
+        on( resistors ).add( 1.5, 3.0, 15.0, 30.0, 150.0 );
+        /* computing resistance. with() works on a collection copy. */
+        double r = 1.0 / with( resistors ).map( inverse ).reduce( sum );
+        /* pretty printing the resistors */
+        System.out.println( "[ " + with( resistors ).join( ", " ) + " ]" );
         /* printing the equivalent resistor */
         System.out.println( r );
-        
-        /* Classic java */
+
+        /* --------------------------------------------------------------- */
+        System.out.println();
+        /* --------------------------------------------------------------- */
+
+        /* RESISTORS IN PARALLEL WITH CLASSIC JAVA */
+
+        System.out.println( "-> Without facade: " );
+        /* Empty collection of resistors */
         resistors = new ArrayList<Double>();
-        resistors.add(1.5);
-        resistors.add(3.0);
-        resistors.add(15.0);
-        resistors.add(30.0);
-        resistors.add(150.0);
+        /* adding values */
+        resistors.add( 1.5 );
+        resistors.add( 3.0 );
+        resistors.add( 15.0 );
+        resistors.add( 30.0 );
+        resistors.add( 150.0 );
+        /* computing resistance */
         double sum = 0.0;
-        for( Double resistor: resistors ) {
+        for( Double resistor : resistors ) {
             sum += 1.0 / resistor;
         }
         r = 1.0 / sum;
-
+        /* pretty printing the resistors */
+        StringBuilder sb = new StringBuilder();
+        sb.append( "[ " );
+        Iterator<Double> it = resistors.iterator();
+        if ( it.hasNext() ) {
+            sb.append( it.next() );
+        }
+        while( it.hasNext() ) {
+            sb.append( ", " ).append( it.next() );
+        }
+        sb.append( " ]" );
+        System.out.println( sb.toString() );
+        /* printing the equivalent resistor */
+        System.out.println( r );
 
     }
 }
