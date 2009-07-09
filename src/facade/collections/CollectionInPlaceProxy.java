@@ -32,7 +32,7 @@ import org.apache.commons.collections15.functors.NotPredicate;
 
 /**
  * Wraps a collection and allow actions to modify it directly.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
 

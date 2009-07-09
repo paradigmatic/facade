@@ -28,7 +28,7 @@ import static facade.Collections.*;
 
 /**
  * Examples for the collection tools.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public class Collections {
 

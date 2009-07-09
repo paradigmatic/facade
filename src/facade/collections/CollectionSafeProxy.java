@@ -33,7 +33,7 @@ import org.apache.commons.collections15.iterators.FilterIterator;
 /**
  * Wraps a collection in a proxy that does not change the collection but copy it.
  * The collection must an empty constructor to be cloned.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public class CollectionSafeProxy<T> implements CollectionProxy<T> {
 

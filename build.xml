@@ -1,15 +1,15 @@
 
 <project name="facade" basedir="." default="compile">
 
-    <property name="version"     value="0.0.1"/>
+    <property name="version"     value="0.1.0"/>
 
-    <property name="src.dir"     value="src"/>
-    <property name="build.dir"   value="build"/>
+    <property name="src.dir"      value="src"/>
+    <property name="build.dir"    value="build"/>
     <property name="dist.dir"     value="dist"/>
-    <property name="lib.dir"     value="lib"/>
-    <property name="doc.dir"     value="doc"/>
+    <property name="lib.dir"      value="lib"/>
+    <property name="doc.dir"      value="doc"/>
     <property name="test.dir"     value="test"/>
-    <property name="reports.dir"     value="reports"/>
+    <property name="reports.dir"  value="reports"/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
@@ -20,6 +20,7 @@
         <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
         <delete dir="${doc.dir}" />
+        <delete dir="${reports.dir}" />
     </target>
     
     
