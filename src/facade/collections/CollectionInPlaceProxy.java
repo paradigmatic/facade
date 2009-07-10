@@ -48,7 +48,7 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
         return this;
     }
 
-    public CollectionProxy addAll(Collection<T> otherCollection) {
+    public CollectionProxy<T> addAll(Collection<T> otherCollection) {
         collection.addAll( otherCollection );
         return this;
     }
@@ -61,7 +61,7 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
       }
 
     public CollectionProxy<T> reject(Predicate<T> pred) {
-        return select( new NotPredicate( pred ) );
+        return select( new NotPredicate<T>( pred ) );
     }
 
     public Collection<T> get() {
@@ -79,7 +79,8 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
         return this;
     }
 
-
+    //TODO: better approach
+    @SuppressWarnings("unchecked")
      public <E> CollectionProxy<E> map(Transformer<T, E> transformer) {
         List lst = new ArrayList( collection.size() );
          for( T t: collection ) {
