@@ -94,27 +94,27 @@ Examples
 ========
 
 For example, if you want to split a string consisting in comma separated
-doubles and then reject the negative and null values, you can type
-something like:
+numbers, parse them to doubles and then reject the negative and null
+values, you can type something like:
 
         on( string( myString ).split( ", " ) ).map( toDouble ).select( isPositive );
 
 Where 'myString' is the string to parse, 'toDouble' and 'isPositive' are
 functors implemented elsewhere.
 
-You can find more examples in the src/facade/example directory.
+You can find more examples in the _src/facade/example_ directory.
 
 Support and Collaboration
 =========================
 
 You can get help through the following methods:
 
-* Read the project [wiki]{http://wiki.github.com/paradigmatic/facade/}
-* Open an entry in the project [issue tracker]{}
+* Read the project [wiki](http://wiki.github.com/paradigmatic/facade/)
+* Open an entry in the project [issue tracker](http://github.com/paradigmatic/facade/issues)
 * Email the project maintainer: jean-luc[dot]falcone[at]unige[dot]ch
 
 Do not hesitate to send critics and feature requests.
 
 The project is hosted by [github](http://github.com). If you want to
 collaborate, you are encouraged to create an account there (basic accounts
-are free). The project is accessible at (http://github.com/paradigmatic/facade/tree/master).
+are free). The full source is browsable in the [project homepage](http://github.com/paradigmatic/facade/tree/master).
