@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Wraps a {@link java.lang.String string} to allow easy manipulation. As the strings are immutable,
  * any usage is always safe for the wrapped string.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public interface StringProxy {
 

@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 /**
  * Basic implementation for the StringProxy interface.
  * @see StringProxy
- * @since 0.0.1
+ * @since 0.1.0
  */
 public class BasicStringProxy implements StringProxy {
 

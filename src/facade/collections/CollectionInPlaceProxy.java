@@ -32,7 +32,7 @@ import org.apache.commons.collections15.functors.NotPredicate;
 
 /**
  * Wraps a collection and allow actions to modify it directly.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
 
@@ -48,7 +48,7 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
         return this;
     }
 
-    public CollectionProxy addAll(Collection<T> otherCollection) {
+    public CollectionProxy<T> addAll(Collection<T> otherCollection) {
         collection.addAll( otherCollection );
         return this;
     }
@@ -61,7 +61,7 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
       }
 
     public CollectionProxy<T> reject(Predicate<T> pred) {
-        return select( new NotPredicate( pred ) );
+        return select( new NotPredicate<T>( pred ) );
     }
 
     public Collection<T> get() {
@@ -79,7 +79,8 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
         return this;
     }
 
-
+    //TODO: better approach
+    @SuppressWarnings("unchecked")
      public <E> CollectionProxy<E> map(Transformer<T, E> transformer) {
         List lst = new ArrayList( collection.size() );
          for( T t: collection ) {
@@ -100,6 +101,17 @@ public class CollectionInPlaceProxy<T> implements CollectionProxy<T> {
 
     public String join(String separator) {
         return Common.join( collection, separator );
+    }
+
+    public CollectionProxy<T> add(T... t) {
+        return addAll( t );
+    }
+
+    public CollectionProxy<T> addAll(T[] array) {
+        for( T t: array )  {
+            collection.add( t );
+        }
+        return this;
     }
 
 

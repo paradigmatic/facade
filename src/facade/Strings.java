@@ -24,7 +24,7 @@ import facade.strings.StringProxy;
 
 /**
  * Provides static wrapper method for Strings.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public class Strings {
 

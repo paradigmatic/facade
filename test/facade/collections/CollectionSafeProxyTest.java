@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.commons.collections15.Closure;
 import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.Transformer;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -46,6 +47,16 @@ public class CollectionSafeProxyTest {
         emptyLst = new ArrayList<Integer>();
         singleLst = new ArrayList<Integer>();
         singleLst.add(SINGLE_ELEM);
+    }
+
+    /**
+     * Asserts that the two collections are not modified
+     */
+    @After
+    public void checkForInvariance() {
+        assertEquals(0, emptyLst.size());
+        assertEquals(1, singleLst.size());
+        assertEquals(SINGLE_ELEM, ((List<Integer>) singleLst).get(0));
     }
 
     /**
@@ -143,8 +154,7 @@ public class CollectionSafeProxyTest {
 
         }
         final int NEW_ELEM = 665;
-        singleLst.add(NEW_ELEM);
-        int result = with(singleLst).reduce(new Sum());
+        int result = with(singleLst).add(NEW_ELEM).reduce(new Sum());
         assertEquals(NEW_ELEM+SINGLE_ELEM, result);
     }
 
@@ -159,6 +169,27 @@ public class CollectionSafeProxyTest {
         assertEquals( 2, lst.size() );
     }
 
+
+      /**
+     * Test of add method with varargs, of class CollectionSafeProxy.
+     */
+    @Test
+    public void testAddVarArgs() {
+        Collection<Integer> newCol = with(singleLst).add( 12, 13).get();
+        assertEquals(3, newCol.size());
+    }
+
+
+    /**
+     * Test of addAll array method, of class CollectionSafeProxy.
+     */
+    @Test
+    public void testAddAllArray() {
+        Integer[] ary = { 12, 13 };
+        Collection<Integer> newCol = with(singleLst).addAll( ary ).get();
+        assertEquals(3, newCol.size() );
+    }
+
     /**
      * Test of join method, of class CollectionSafeProxy.
      */
@@ -167,9 +198,7 @@ public class CollectionSafeProxyTest {
         final int SECOND = 665;
         final int THIRD = 333;
         final String SEPARATOR = ", ";
-        singleLst.add(SECOND);
-        singleLst.add(THIRD);
-        String str = with(singleLst).join(", ");
+        String str = with(singleLst).add(SECOND, THIRD).join(", ");
         assertEquals( SINGLE_ELEM+SEPARATOR+SECOND+SEPARATOR+THIRD, str);
     }
 

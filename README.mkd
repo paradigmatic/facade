@@ -1,9 +1,30 @@
 Description
 ===========
 
-_Facade_ is a library design to make the use of java standard API less verbose
-and boring. It combines the use of a "natural language" like syntax and
-functional programming techniques.
+_Facade_ is a library design to make the use of java standard API 
+less boring. It combines the use of a "natural language" like syntax and
+functional programming techniques. The advantages are:
+
+  * Self-documenting code.
+  * Code shorter: less to type and less to debug.
+  * Code reuse at "block" level: allows to cope with the lack of closure
+    in java language.
+  * Reduced side-effects: less temporary variables, stateless immutable
+    functors, etc.
+
+
+License and ownership
+---------------------
+
+_Facade_ is an free open source library released under GNU GPLv3 license
+(see the LICENSE file included in the bundle).
+
+If you are interested to integrate _Facade_ in an open source project with
+a similar but different license (BSD, GPLv2, Apache License, etc.), contact
+the copyright owner (see below for contact address).
+
+Copyright Jean-Luc Falcone, 2009. All rights reserved.
+
 
 Installation
 ============
@@ -57,19 +78,43 @@ The required dependencies are included in the lib directory.
 Usage
 =====
 
-Example
-=======
+To use it, just add the 'facade.jar' and the content of 'lib' directory
+to your classpath.
+
+In your code, you need only to import wrapper static methods defined
+in classes in the root of 'facade' package tree. For instance:
+
+        import static facade.Collections.*;
+
+Will give you access to the 'with' and 'on' wrapper methods. This
+is the only import you really need...
+
+
+Examples
+========
+
+For example, if you want to split a string consisting in comma separated
+numbers, parse them to doubles and then reject the negative and null
+values, you can type something like:
+
+        on( string( myString ).split( ", " ) ).map( toDouble ).select( isPositive );
+
+Where 'myString' is the string to parse, 'toDouble' and 'isPositive' are
+functors implemented elsewhere.
+
+You can find more examples in the _src/facade/example_ directory.
 
 Support and Collaboration
 =========================
 
 You can get help through the following methods:
 
-* Read the project [wiki]{http://wiki.github.com/paradigmatic/facade/}
-* Open an entry in the project [issue tracker]{}
+* Read the project [wiki](http://wiki.github.com/paradigmatic/facade/)
+* Open an entry in the project [issue tracker](http://github.com/paradigmatic/facade/issues)
 * Email the project maintainer: jean-luc[dot]falcone[at]unige[dot]ch
 
 Do not hesitate to send critics and feature requests.
 
-If you want to collaborate, start a _free_ [github]{http://github.com} account and visit the
-project [repository]{http://github.com/paradigmatic/facade/tree/master}.
+The project is hosted by [github](http://github.com). If you want to
+collaborate, you are encouraged to create an account there (basic accounts
+are free). The full source is browsable in the [project homepage](http://github.com/paradigmatic/facade/tree/master).

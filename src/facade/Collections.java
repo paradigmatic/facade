@@ -27,7 +27,7 @@ import java.util.Collection;
 
 /**
  * Provides static wrapper method to Collections.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public class Collections {
 

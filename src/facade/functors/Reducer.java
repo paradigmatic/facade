@@ -22,7 +22,7 @@ package facade.functors;
 /**
  * Allows to reduce a collection to a single value. The reduction operation
  * can be non-commutative or non associative.
- * @since 0.0.1
+ * @since 0.1.0
  */
 public interface Reducer<T,R> {
 
